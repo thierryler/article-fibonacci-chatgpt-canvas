@@ -1,48 +1,48 @@
 package com.thi.fibogpt;
-
 import static org.junit.Assert.*;
-import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class FibonacciTest {
 
-	@Test
-	public void testFibonacciRecursif() {
-		Fibonacci fibonacci = new Fibonacci();
+    @ParameterizedTest
+    @CsvSource({
+        "0, 0",
+        "1, 1",
+        "2, 1",
+        "3, 2",
+        "4, 3",
+        "5, 5",
+        "6, 8",
+        "10, 55"
+    })
+    public void testFibonacciRecursif(int input, int expected) {
+        Fibonacci fibonacci = new Fibonacci();
+        assertEquals(expected, fibonacci.fibonacciRecursif(input));
+    }
 
-		// Test des premiers termes
-		assertEquals(0, fibonacci.fibonacciRecursif(0));
-		assertEquals(1, fibonacci.fibonacciRecursif(1));
-		assertEquals(1, fibonacci.fibonacciRecursif(2));
-		assertEquals(2, fibonacci.fibonacciRecursif(3));
-		assertEquals(3, fibonacci.fibonacciRecursif(4));
-		assertEquals(5, fibonacci.fibonacciRecursif(5));
-		assertEquals(8, fibonacci.fibonacciRecursif(6));
-		assertEquals(55, fibonacci.fibonacciRecursif(10));
-	}
+    @ParameterizedTest
+    @CsvSource({
+        "0, 0",
+        "1, 1",
+        "2, 1",
+        "3, 2",
+        "4, 3",
+        "5, 5",
+        "6, 8",
+        "10, 55"
+    })
+    public void testFibonacciIteratif(int input, int expected) {
+        Fibonacci fibonacci = new Fibonacci();
+        assertEquals(expected, fibonacci.fibonacciIteratif(input));
+    }
 
-	@Test
-	public void testFibonacciIteratif() {
-		Fibonacci fibonacci = new Fibonacci();
-
-		// Test des premiers termes
-		assertEquals(0, fibonacci.fibonacciIteratif(0));
-		assertEquals(1, fibonacci.fibonacciIteratif(1));
-		assertEquals(1, fibonacci.fibonacciIteratif(2));
-		assertEquals(2, fibonacci.fibonacciIteratif(3));
-		assertEquals(3, fibonacci.fibonacciIteratif(4));
-		assertEquals(5, fibonacci.fibonacciIteratif(5));
-		assertEquals(8, fibonacci.fibonacciIteratif(6));
-		assertEquals(55, fibonacci.fibonacciIteratif(10));
-	}
-
-	@Test
-	public void testFibonacciRecursifVsIteratif() {
-		Fibonacci fibonacci = new Fibonacci();
-
-		// Comparer les résultats des deux méthodes pour quelques valeurs
-		for (int i = 0; i <= 15; i++) {
-			assertEquals(fibonacci.fibonacciRecursif(i), fibonacci.fibonacciIteratif(i));
-		}
-	}
-
+    @ParameterizedTest
+    @CsvSource({
+        "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"
+    })
+    public void testFibonacciRecursifVsIteratif(int input) {
+        Fibonacci fibonacci = new Fibonacci();
+        assertEquals(fibonacci.fibonacciRecursif(input), fibonacci.fibonacciIteratif(input));
+    }
 }
